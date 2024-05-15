@@ -9,6 +9,9 @@
 # docker postgres
 /postgres
 
+# config prisma
+.env
+
 # testing
 /coverage
 
