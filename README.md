@@ -37,3 +37,8 @@ Pasos para levantar la base de datos
 ````
     npx prisma generate
 ````
+
+>[!IMPORTANT]
+>
+> Si necesitas usar la semilla para purgar la base de datos en **local** ve a la siguiente [url]: [http://localhost:3000/api/seed]
+
