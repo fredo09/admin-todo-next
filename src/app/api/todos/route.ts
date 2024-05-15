@@ -3,7 +3,10 @@
  */
 
 import prisma from '@/lib/prisma';
-import { NextResponse, NextRequest } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server';
+
+//Schemas yup
+import { postTodoSchema } from '@/utils'
 
 export async function GET(request: Request) {
 
@@ -32,4 +35,31 @@ export async function GET(request: Request) {
         },
         message: 'Recuperaste todos los todos'
     });
-};
+}
+
+/**
+ * ! usamos yup para validar el tipo de body y ademas lo tratamos con un try-catch para manejar el posible error
+ */
+
+export async function POST(request: Request) {
+    try {
+        const { description, isComplete } =  await postTodoSchema.validate( await request.json() );
+
+        const todoDB = await prisma.todo.create({ data: { description, isComplete } });
+
+        return NextResponse.json({
+            status: 'OK',
+            code: 200,
+            data: {
+                todo: todoDB
+            },
+            message: 'Todo creado'
+        });
+    } catch(err) {
+        return NextResponse.json({
+            status: 'ERROR',
+            code: 400,
+            message: `Ocurrio un error ${err}`
+        }, { status: 400 });
+    }
+}
