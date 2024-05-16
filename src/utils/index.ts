@@ -2,4 +2,4 @@
  * export utils
  */
 
-export { postTodoSchema } from './yupSchemas/yupSchemas';
+export { postTodoSchema, putTodoSchema } from './yupSchemas/yupSchemas';
