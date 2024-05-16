@@ -6,6 +6,12 @@
 .pnp.js
 .yarn/install-state.gz
 
+# docker postgres
+/postgres
+
+# config prisma
+.env
+
 # testing
 /coverage
 

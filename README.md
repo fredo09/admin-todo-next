@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Development 🤓 
 
-## Getting Started
+Pasos para levantar la base de datos 
 
-First, run the development server:
+1. Ejecuta el siguiente comando: 
+````
+    docker compose up -d
+````
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. Renombrar el archivo .env.template a .env 
+3. Agregar varaibles de entorno para el proyecto
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Prisma Commands 🏆 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Para mas informacion visitar: [https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema] 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Para generar el ORM para la base de datos se usa prisma al momento de generar este configuracion usar el comando 👍 : 
 
-## Learn More
+````
+    npx prisma init
+````
 
-To learn more about Next.js, take a look at the following resources:
+2. Al generar la migración de la base de datos use el siguiente comando:
+    Cabe mensionar que el nombre **"dev"** puede ser el que uno guste.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+````
+    npx prisma migrate dev
+````
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+>[!NOTE]
+>
+> Recuerda que al momento de hacer algún cambio en el modelo ya se ** quitar o modificar** una propiedad tendras que ejecutar de nuevo la migracion con el comando anterior.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Para hacer la manipulacion a la base de datos usar el siguiente comando: 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+````
+    npx prisma generate
+````
+
+>[!IMPORTANT]
+>
+> Si necesitas usar la semilla para purgar la base de datos en **local** ve a la siguiente [url]: [http://localhost:3000/api/seed]
+
