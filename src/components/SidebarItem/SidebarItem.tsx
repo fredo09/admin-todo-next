@@ -11,20 +11,21 @@ interface Props {
 
 export const SidebarItem = ( { path, icon, title }: Props ) => {
 
-    const currentPath = usePathname();
+  const currentPath = usePathname();
 
 
-    return (
-        <>
-            <li>
-              <Link href={path} 
-                className={`${currentPath === path ? 'text-white bg-gradient-to-r from-sky-600 to-cyan-400': ''} 
-                px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group
-                `}>
-                { icon }
-                <span className="-mr-1 font-medium">{title}</span>
-              </Link>
-            </li>
-        </>
-    );
+  return (
+    <>
+      <li>
+        <Link href={path} 
+          className={
+            `${currentPath === path ? 'text-white bg-gradient-to-r from-sky-600 to-cyan-400': ''} 
+            px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group
+            hover:bg-gradient-to-r hover:text-white hover:bg-sky-600`}>
+          { icon }
+          <span className="-mr-1 font-medium">{title}</span>
+        </Link>
+      </li>
+    </>
+  );
 }
