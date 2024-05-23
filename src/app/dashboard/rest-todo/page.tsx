@@ -17,7 +17,7 @@ export default async function RestTodoPage () {
     console.log("🚀 ~ RestTodoPage ~ todos:", todos);
 
     return (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="w-full px-3 mx-5 mb-5">
             {/* TODO: AGREGAR EL FORMUALRIO */}
             {/* <Widget /> */}
             <TodoGrid todos={todos}/>
