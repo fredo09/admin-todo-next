@@ -1,5 +1,3 @@
-
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { CiLogout, CiBookmarkCheck } from 'react-icons/ci';
@@ -8,14 +6,24 @@ import { SidebarItem } from '../SidebarItem/SidebarItem';
 // items de menu
 const itemsSidebar = [
   {
-    path: 'main',
+    path: '/dashboard',
     icon: <CiBookmarkCheck size={30} />,
     title: 'Dashboard'
   },
   {
-    path: '#',
+    path: '/dashboard/catergories',
     icon: <CiBookmarkCheck size={30} />,
     title: 'Categories'
+  },
+  {
+    path: '/dashboard/rest-todo',
+    icon: <CiBookmarkCheck size={30} />,
+    title: 'Rest Tdo'
+  },
+  {
+    path: '/dashboard/server-actions',
+    icon: <CiBookmarkCheck size={30} />,
+    title: 'Server actions'
   }
 ];
 
@@ -41,16 +49,15 @@ export const Sidebar = () => {
           <ul className="space-y-2 tracking-wide mt-8">
             {/* TODO: USAR EL MAP PARA ITERAR ITEMS */}
             {
-              itemsSidebar.map( itemSidebar => (
+              itemsSidebar.map(({ title, path, icon }) => (
                 <SidebarItem
-                  key={itemSidebar.title}
-                  path={itemSidebar.path}
-                  icon={itemSidebar.icon}
-                  title={itemSidebar.title}
+                  key={title}
+                  path={path}
+                  icon={icon}
+                  title={title}
                 />
               ))
             }
-            
           </ul>
         </div>
 
