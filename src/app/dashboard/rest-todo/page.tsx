@@ -2,8 +2,6 @@ import prisma from "@/lib/prisma";
 import { TodoGrid } from "@/todos";
 import { Metadata } from "next";
 
-
-
 //* agergamos metadata
 export const metadata: Metadata = {
     title: 'Lista de todos',
