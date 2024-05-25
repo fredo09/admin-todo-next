@@ -4,8 +4,21 @@
 
 import { Todo } from "@prisma/client";
 
+//* agregamos alguna latencia
+const sleep = (seconds: number = 0):Promise<boolean> => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(true);
+        }, seconds *  1000 );
+    });
+};
+
 export const updateTodoApi = async  (id: string, isComplete: boolean ):Promise<Todo> => {
     const payloadBody = { isComplete };
+
+    // TODO: hacer el server actions
+    // algo de ver la actualizacion optimista
+    //await sleep(2); 
 
     const todoResponse = await fetch(`/api/todos/${id}`, {
         method: 'PUT',
