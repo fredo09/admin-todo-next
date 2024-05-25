@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { TodoGrid } from "@/todos";
+import { NewTodo, TodoGrid } from "@/todos";
 import { Metadata } from "next";
 
 //* agergamos metadata
@@ -15,8 +15,12 @@ export default async function RestTodoPage () {
     console.log("🚀 ~ RestTodoPage ~ todos:", todos);
 
     return (
-        <div className="w-full px-3 mx-5 mb-5">
+        <div >
             {/* TODO: AGREGAR EL FORMUALRIO */}
+            <div className="w-full px-3 mx-5 mb-5">
+                <NewTodo />
+            </div>
+            
             {/* <Widget /> */}
             <TodoGrid todos={todos}/>
         </div>
