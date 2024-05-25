@@ -63,3 +63,30 @@ export async function POST(request: Request) {
         }, { status: 400 });
     }
 }
+
+//* metodo para elimiar todos completado
+export async function DELETE(request: Request) {
+    try {
+        const todoDeleteDB = await prisma.todo.deleteMany({ where: { isComplete: true } })
+
+        if(!todoDeleteDB) {
+            return NextResponse.json({
+                status: 'ERROR',
+                code: 500,
+                message: `Ocurrio un error al hacer la operación`
+            }, { status: 500 });
+        }
+
+        return NextResponse.json({
+            status: 'OK',
+            code: 200,
+            message: `todos eliminados`
+        });
+    }catch(error) {
+        return NextResponse.json({
+            status: 'ERROR',
+            code: 500,
+            message: `Ocurrio un error al hacer la operación ${error}`
+        },{ status: 500 })
+    };
+}
