@@ -2,4 +2,4 @@
  *  Export todos los helpers 
  */
 
-export { updateTodoApi, createTodoApi } from './TodoHelper';
+export { updateTodoApi, createTodoApi, deletetTodoApi } from './TodoHelper';
