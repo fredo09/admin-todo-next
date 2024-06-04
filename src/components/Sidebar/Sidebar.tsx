@@ -24,6 +24,11 @@ const itemsSidebar = [
     path: '/dashboard/server-actions',
     icon: <CiBookmarkCheck size={30} />,
     title: 'Server actions'
+  },
+  {
+    path: '/dashboard/cookies',
+    icon: <CiBookmarkCheck size={30} />,
+    title: 'Cookies'
   }
 ];
 
