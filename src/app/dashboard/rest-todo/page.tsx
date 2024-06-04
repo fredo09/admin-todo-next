@@ -2,6 +2,10 @@ import prisma from "@/lib/prisma";
 import { NewTodo, TodoGrid } from "@/todos";
 import { Metadata } from "next";
 
+//* forzar la render dymanic de la page con data que pueda cambiar y contruimos la pagen y evitamos la cache
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 //* agergamos metadata
 export const metadata: Metadata = {
     title: 'Lista de todos',
