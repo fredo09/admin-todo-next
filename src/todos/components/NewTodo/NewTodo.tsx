@@ -1,9 +1,10 @@
 'use client';
 
 import React, { FormEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { IoTrashOutline } from 'react-icons/io5';
-import { createTodoApi, deletetTodoApi } from '@/todos';
+//import { useRouter } from 'next/navigation';
+//import { createTodoApi, deletetTodoApi } from '@/todos';
+import { createTodo, deleteCompleted } from '@/todos/actions/todo-actions';
 
 
 export const NewTodo = () => {
@@ -11,7 +12,7 @@ export const NewTodo = () => {
     description: ''
   });
 
-  const router = useRouter();
+  // const router = useRouter();
   
 
   //* funcion para envvio de nuevo todo
@@ -23,21 +24,28 @@ export const NewTodo = () => {
 
     if (description.trim().length === 0) return;
     
-    const todoCreate = await createTodoApi(description);
-    console.log("🚀 ~ onSubmitTodo ~ todoCreate:", todoCreate)
+    //* usando modo apirest
+    // const todoCreate = await createTodoApi(description);
+    // console.log("🚀 ~ onSubmitTodo ~ todoCreate:", todoCreate)
     
-    router.refresh();
+    //* usando server actions para create todo
+    await createTodo(description);
+
+    //router.refresh();
     console.log('realizando el eventoon submit');
     setTodoValue({ description: '' });
   };
 
   const deleteCompleted = async () => {
-    console.log("🚀 ~ deleteCompleted ~ deleteCompleted:"); 
+    // console.log("🚀 ~ deleteCompleted ~ deleteCompleted:"); 
 
-    const deleteTodo = await deletetTodoApi();
-    console.log("🚀 ~ deleteCompleted ~ deleteTodo:", deleteTodo)
+    // const deleteTodo = await deletetTodoApi();
+    // console.log("🚀 ~ deleteCompleted ~ deleteTodo:", deleteTodo)
 
-    router.refresh();
+    // * server actions para delete todo
+    //await deleteCompleted();
+
+    //router.refresh();
   };
 
   return (
@@ -58,7 +66,7 @@ export const NewTodo = () => {
       <span className='flex flex-1'></span>
 
       <button
-        onClick={deleteCompleted}
+        onClick={() => deleteCompleted()}
         type='button' className="flex items-center justify-center rounded ml-2 bg-red-400 p-2 text-white hover:bg-red-700 transition-all">
         <IoTrashOutline />
         Delete

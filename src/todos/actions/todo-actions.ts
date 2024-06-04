@@ -24,4 +24,60 @@ export const toggleTodo = async( id: string, isComplete: boolean): Promise<Todo>
     revalidatePath('/dashboard/server-actions');
 
     return updateTodo;
-}
+};
+
+export const createTodo = async( description: string ) => {
+    try {
+        //const { description, isComplete } = await postTodoSchema.validate(await request.json());
+        const todoDB = await prisma.todo.create({ data: { description } });
+
+        revalidatePath('/dashboard/server-actions');
+
+        return {
+            status: 'OK',
+            code: 200,
+            data: {
+                todo: todoDB
+            },
+            message: 'Todo creado'
+        };
+    } catch (err) {
+        return {
+            status: 'ERROR',
+            code: 400,
+            message: `Ocurrio un error ${err}`,
+            data: {
+                todo: null
+            }
+        };
+    }
+};
+
+
+export const deleteCompleted = async() => {
+    try {
+        const todoDeleteDB = await prisma.todo.deleteMany({ where: { isComplete: true } })
+
+        if (!todoDeleteDB) {
+            return {
+                status: 'ERROR',
+                code: 500,
+                message: `Ocurrio un error al hacer la operación`
+            };
+        }
+
+        revalidatePath('/dashboard/server-actions');
+
+        return {
+            status: 'OK',
+            code: 200,
+            message: `todos eliminados`
+        };
+    } catch (error) {
+        return {
+            status: 'ERROR',
+            code: 500,
+            message: `Ocurrio un error al hacer la operación ${error}`
+        }
+    };
+};

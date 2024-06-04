@@ -2,4 +2,4 @@
  *  export server actions 
  */
 
-export { toggleTodo } from './todo-actions';
+export { toggleTodo, createTodo, deleteCompleted } from './todo-actions';
