@@ -15,13 +15,10 @@ export default async function ServerActionsPage() {
 
     return (
         <div>
-            <h1 className="text-4xl text-black mb-4">Server Actions</h1>
-            {/* TODO: AGREGAR EL FORMUALRIO */}
-            <div className="w-full px-3 mx-5 mb-5">
+            <span className="text-4xl text-black mb-4">Server Actions</span>
+            <div className="w-full px-3 mx-5 mb-5 mt-5">
                 <NewTodo />
             </div>
-
-            {/* <Widget /> */}
             <TodoGrid todos={todos} />
         </div>
     );
