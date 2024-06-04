@@ -52,7 +52,6 @@ export const createTodoApi = async ( description: string ): Promise<Todo> => {
 
 
 export const deletetTodoApi = async(): Promise<Todo | void> => {
-
     const todoResponse = await fetch('/api/todos', {
         method: 'DELETE',
         headers: {

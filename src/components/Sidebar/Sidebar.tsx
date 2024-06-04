@@ -18,7 +18,7 @@ const itemsSidebar = [
   {
     path: '/dashboard/rest-todo',
     icon: <CiBookmarkCheck size={30} />,
-    title: 'Rest Tdo'
+    title: 'Rest Todo'
   },
   {
     path: '/dashboard/server-actions',
