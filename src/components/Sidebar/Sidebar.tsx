@@ -11,9 +11,9 @@ const itemsSidebar = [
     title: 'Dashboard'
   },
   {
-    path: '/dashboard/catergories',
+    path: '/dashboard/products',
     icon: <CiBookmarkCheck size={30} />,
-    title: 'Categories'
+    title: 'productos'
   },
   {
     path: '/dashboard/rest-todo',
