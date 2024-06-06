@@ -1,31 +1,31 @@
 'use client';
 
-import { setCookie } from 'cookies-next';
 import React, { useState } from 'react';
+import { setCookie } from 'cookies-next';
+import { useRouter } from "next/navigation";
 
 interface Props {
     currentTab? : number,
     TabOptions? : number[]
 }
 
-export const TabBar = ({ TabOptions = [1,2,3,4], currentTab = 1 }: Props ) => {
-    const [tabOption, setTabOption] = useState(currentTab);
-
+export const TabBar = ({ TabOptions = [1,2,3,4]}: Props ) => {
+    const route = useRouter()
+    const [tabOption, setTabOption] = useState(1);
+    
     const onTabSeleted = ( tabSelected: number ) => {
         console.log("🚀 ~ onTabSeleted ~ tabSelected:", tabSelected);
         
+        console.log("🚀 ~ TabBar ~ tabOption:", tabOption)
         setTabOption(tabSelected);
 
         //* Set cookies
-        setCookie('tabSelected', tabOption );
+        setCookie('tabSelected', tabOption.toString() );
+        route.refresh();
     };
 
     return (
-        <div 
-            className={`
-                grid w-full space-x-2 rounded-xl bg-gray-200 p-2 mt-3
-                ${'grid-cols-'+TabOptions.length }
-                `}>
+        <div className={` grid w-full space-x-2 rounded-xl bg-gray-200 p-2 mt-3 grid-cols-4`}>
             {
                 TabOptions.map( tab => (
                     <div key={ tab }>
