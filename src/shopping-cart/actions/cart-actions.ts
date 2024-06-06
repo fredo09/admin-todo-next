@@ -38,7 +38,7 @@ export const addCookieProductCart = (id: string) => {
     console.log("🚀 ~ addCookieProductCart ~ id:", id)
     
     const cookieCart = getCookieCart();
-
+    
     if(cookieCart[id]) {
         cookieCart[id] = cookieCart[id] + 1;
     } else {
@@ -46,5 +46,18 @@ export const addCookieProductCart = (id: string) => {
     }
 
     setCookie('cart', JSON.stringify(cookieCart)); 
+};
+
+
+/**
+ * @description actions for delete items of shopping cart
+ * @param id item cart
+ */
+export const deleteProductCart = (id: string) => {
+    const cookieCart = getCookieCart();
+
+    delete cookieCart[id];
+
+    setCookie('cart', JSON.stringify(cookieCart));
 };
 
