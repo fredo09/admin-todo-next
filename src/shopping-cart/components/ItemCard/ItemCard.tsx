@@ -2,11 +2,9 @@
 
 import { Product } from "@/products/data"
 import Image from "next/image";
-
 import { IoAddCircleOutline, IoRemove } from "react-icons/io5";
-//import { } from "../actions/actions";
-
 import { useRouter } from "next/navigation";
+import { removeSingleItemFromCart, addCookieProductCart } from "@/shopping-cart/actions/cart-actions";
 
 interface Props {
   product: Product;
@@ -19,12 +17,12 @@ export const ItemCard = ({ product, quantity }: Props) => {
   const router = useRouter();
 
   function onAddToCart() {
-    //TODO: addProductToCart(product.id);
+    addCookieProductCart(product.id);
     router.refresh();
   }
 
   function onRemoveItem() {
-    //TODO: removeSingleItemFromCart(product.id);
+    removeSingleItemFromCart(product.id);
     router.refresh();
   }
 

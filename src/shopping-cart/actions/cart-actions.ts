@@ -61,3 +61,20 @@ export const deleteProductCart = (id: string) => {
     setCookie('cart', JSON.stringify(cookieCart));
 };
 
+export const removeSingleItemFromCart = (id: string) => {
+    const cookieCart = getCookieCart();
+
+    if ( !cookieCart[id] ) return;
+
+    const itemCart = cookieCart[id] - 1;
+
+    // eliminamos el item cuando el valor llegue a cero de no ser asi asignamos el valor que tiene el itemCart
+    if ( itemCart <= 0 ){
+        delete cookieCart[id];
+    } else {
+        cookieCart[id] = itemCart;
+    }
+
+    setCookie('cart', JSON.stringify(cookieCart))
+};
+
