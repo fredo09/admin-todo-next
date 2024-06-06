@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { ProductsCard } from "@/products/components";
 
 
 export const metada:Metadata = {
@@ -9,8 +10,9 @@ export const metada:Metadata = {
 
 export default async function ProductsPage() {
     return(
-        <div>
-            <h1>Hola productos 🚀</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            {/* ProductCard */}
+            <ProductsCard />
         </div>
     );
 }
