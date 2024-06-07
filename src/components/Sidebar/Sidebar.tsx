@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { CiLogout, CiBookmarkCheck, CiUser } from 'react-icons/ci';
-import { SidebarItem } from '../SidebarItem/SidebarItem';
+import { CiBookmarkCheck, CiUser } from 'react-icons/ci';
+import { SidebarItem, Logout } from '@/components';
 
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
@@ -95,12 +95,7 @@ export const Sidebar = async () => {
         </ul>
       </div>
 
-      <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
-        <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-          <CiLogout />
-          <span className="group-hover:text-gray-700">Logout</span>
-        </button>
-      </div>
+      <Logout />
     </aside>
   );
 }
