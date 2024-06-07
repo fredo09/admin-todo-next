@@ -46,17 +46,6 @@ export default function ProfilePage() {
                         </p>
                     </div>
                     <hr className="mt-8" />
-                    <div className="flex p-4">
-                        <div className="w-1/2 text-center">
-                            <span className="font-bold">1.8 k</span> Followers
-                        </div>
-                        <div className="w-0 border border-gray-300">
-
-                        </div>
-                        <div className="w-1/2 text-center">
-                            <span className="font-bold">2.0 k</span> Following
-                        </div>
-                    </div>
             </div>
         </div>
     );
