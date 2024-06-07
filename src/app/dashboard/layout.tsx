@@ -1,4 +1,4 @@
-import { Sidebar, TopNavbar, Widget } from '@/components';
+import { Sidebar, TopNavbar } from '@/components';
 
 
 export default function RootLayout({
