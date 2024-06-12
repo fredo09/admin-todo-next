@@ -39,6 +39,11 @@ export default function ProfilePage() {
                             sesion?.user?.email ?? 'Correo no existente' 
                         }
                     </div>
+                <div className="text-center mt-2 font-light text-sm">
+                    {
+                        sesion?.user?.roles?.join(',') ?? ['client']
+                    }
+                </div>
                     <div className="px-6 text-center mt-2 font-light text-sm">
                         <p>
                             Front end Developer, avid reader. 
