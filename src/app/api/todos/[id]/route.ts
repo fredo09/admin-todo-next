@@ -6,6 +6,7 @@ import prisma from '@/lib/prisma';
 import { Todo } from '@prisma/client';
 import { NextResponse, NextRequest } from 'next/server';
 import { putTodoSchema } from '@/utils';  
+import { getSessionUserServer } from '@/auth';
 
 interface Segments {
     params: {
@@ -74,6 +75,20 @@ export async function PUT(request: Request, { params: { id } }: Segments) {
 
 //* -> metodo para recuperar el todo
 const getTodo = async (id: string ): Promise<Todo | null> => {
+
+    //* recupero el usario mediante el server actions de la session
+    const session = await getSessionUserServer();
+
+    if (!session) {
+        // * Si no hay usuario
+        return null;
+    }
+
     const todoDB = await prisma.todo.findFirst({ where: { id } }); 
+
+    //* modificar todo que no sea del usuario actual
+    if (todoDB?.userId !== session.id) {
+        return null;
+    }
     return todoDB;
 }

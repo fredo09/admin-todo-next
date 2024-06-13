@@ -14,20 +14,20 @@ export const TodoGrid = ({ todos = [] }: Props ) => {
     console.log("🚀 ~ TodoGrid ~ todos:", todos);
 
     //* Modo de hacer un reflesh usando cosas de next y no como del modo convencional en react
-    //const router = useRouter();
+    const router = useRouter();
 
     //* Usando la misma peticion de toggle usando server actions
     
 
     //* Funcion para actualizar el todo sin useEffect
     //* Usando la peticion de forma ApiRest 
-    // const toggleUpdate = async(id: string, isComplete: boolean) => {
-    //     const updatedTodo = await updateTodoApi( id, isComplete );
+    const toggleUpdate = async(id: string, isComplete: boolean) => {
+        const updatedTodo = await updateTodoApi( id, isComplete );
         
-    //     router.refresh();
-    //     console.log("🚀 ~ toggleUpdate ~ updatedTodo:", updatedTodo);
-    //     return updatedTodo;
-    // };
+        router.refresh();
+        console.log("🚀 ~ toggleUpdate ~ updatedTodo:", updatedTodo);
+        return updatedTodo;
+    };
 
     return (
         <div className='grid grid-cols-1 sm:grid-cols-3 gap-2'>
@@ -36,7 +36,8 @@ export const TodoGrid = ({ todos = [] }: Props ) => {
                     <TodoItem 
                         key={ todo.id } 
                         todo={ todo } 
-                        toogleUpdate={ toggleTodo } />
+                        // toogleUpdate={ toggleTodo } /> -> server actions
+                        toogleUpdate={toggleUpdate}/>
                 ))
             }
         </div>

@@ -2,8 +2,8 @@
 
 import React, { FormEvent, useState } from 'react';
 import { IoTrashOutline } from 'react-icons/io5';
-//import { useRouter } from 'next/navigation';
-//import { createTodoApi, deletetTodoApi } from '@/todos';
+import { useRouter } from 'next/navigation';
+import { createTodoApi, deletetTodoApi } from '@/todos';
 import { createTodo, deleteCompleted } from '@/todos/actions/todo-actions';
 
 
@@ -12,7 +12,7 @@ export const NewTodo = () => {
     description: ''
   });
 
-  // const router = useRouter();
+  const router = useRouter();
   
 
   //* funcion para envvio de nuevo todo
@@ -29,14 +29,18 @@ export const NewTodo = () => {
     // console.log("🚀 ~ onSubmitTodo ~ todoCreate:", todoCreate)
     
     //* usando server actions para create todo
-    await createTodo(description);
+    //!await createTodo(description, userId); -> NO SE USA DE MOMENTO
 
-    //router.refresh();
+    //* SE USARA DE MOMENTO EL API PARA CREAR EL TODO MEDIANTE EL ID DEL USUARIO "QUITANDO EL SERVER ACTIONS"
+    await createTodoApi(description);
+
+    router.refresh();
     console.log('realizando el eventoon submit');
     setTodoValue({ description: '' });
   };
 
-  const deleteCompleted = async () => {
+  //* Api rest para eliminar todos
+  //const deleteCompleted = async () => {
     // console.log("🚀 ~ deleteCompleted ~ deleteCompleted:"); 
 
     // const deleteTodo = await deletetTodoApi();
@@ -46,7 +50,7 @@ export const NewTodo = () => {
     //await deleteCompleted();
 
     //router.refresh();
-  };
+  //};
 
   return (
     <form

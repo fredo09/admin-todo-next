@@ -42,3 +42,9 @@ Pasos para levantar la base de datos
 >
 > Si necesitas usar la semilla para purgar la base de datos en **local** ve a la siguiente [url]: [http://localhost:3000/api/seed]
 
+
+>[!IMPORTANT]
+>
+> Usuario por default es el siguiente
+> __Email:__ email1@gmail.com
+> __Password:__ 123456
