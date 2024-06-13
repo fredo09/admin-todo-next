@@ -2,4 +2,4 @@
  *  Actions exports auth 
  */
 
-export { signInWitEmailAndPassowrd } from './auth-actions'
+export { signInWitEmailAndPassowrd, getSessionUserServer } from './auth-actions'

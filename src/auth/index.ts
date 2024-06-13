@@ -4,4 +4,4 @@
  */
 
 export { AuthProvider } from './AuthProvider/AuthProvider';
-export { signInWitEmailAndPassowrd } from './actions'
+export { signInWitEmailAndPassowrd, getSessionUserServer } from './actions'
