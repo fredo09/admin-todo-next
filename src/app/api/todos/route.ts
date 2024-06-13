@@ -7,6 +7,7 @@ import { NextResponse, NextRequest } from 'next/server';
 
 //Schemas yup
 import { postTodoSchema } from '@/utils'
+import { getSessionUserServer } from '@/auth';
 
 export async function GET(request: Request) {
 
@@ -42,10 +43,22 @@ export async function GET(request: Request) {
  */
 
 export async function POST(request: Request) {
+    //* recupero el usario mediante el server actions de la session
+    const session =  await getSessionUserServer();
+
+    if (!session) {
+        // * Si no hay usuario
+        return NextResponse.json({
+            message: 'No autizado',
+            code: 401,
+            status: 'ERROR'
+        }, { status: 401 });
+    }
+
     try {
         const { description, isComplete } =  await postTodoSchema.validate( await request.json() );
 
-        const todoDB = await prisma.todo.create({ data: { description, isComplete } });
+        const todoDB = await prisma.todo.create({ data: { description, isComplete, userId: session.id } });
 
         return NextResponse.json({
             status: 'OK',
@@ -66,8 +79,20 @@ export async function POST(request: Request) {
 
 //* metodo para elimiar todos completado
 export async function DELETE(request: Request) {
+    //* recupero el usario mediante el server actions de la session
+    const session = await getSessionUserServer();
+
+    if (!session) {
+        // * Si no hay usuario
+        return NextResponse.json({
+            message: 'No autizado',
+            code: 401,
+            status: 'ERROR'
+        }, { status: 401 });
+    }
+
     try {
-        const todoDeleteDB = await prisma.todo.deleteMany({ where: { isComplete: true } })
+        const todoDeleteDB = await prisma.todo.deleteMany({ where: { isComplete: true, userId: session.id } })
 
         if(!todoDeleteDB) {
             return NextResponse.json({
